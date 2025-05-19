@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Dark Theme</title>
+    <style>
+      /* Global Styles */
+      :root {
+        --bg-primary: #0a0a0a;
+        --bg-secondary: #121212;
+        --accent-color: #8a2be2;
+        --text-primary: #ffffff;
+        --text-secondary: #a0a0a0;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--text-primary);
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        background: var(--accent-color);
+        color: var(--text-primary);
+        padding: 12px 30px;
+        border: none;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(138, 43, 226, 0.2);
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      /* Header & Navigation */
+      header {
+        background-color: rgba(10, 10, 10, 0.95);
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .logo {
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--accent-color);
+      }
+
+      .nav-links {
+        display: flex;
+      }
+
+      .nav-links li {
+        margin-left: 30px;
+      }
+
+      .nav-links a {
+        position: relative;
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover {
+        color: var(--accent-color);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: var(--accent-color);
+        bottom: -5px;
+        left: 0;
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .mobile-menu {
+        display: none;
+        cursor: pointer;
+      }
+
+      .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: var(--text-primary);
+        transition: var(--transition);
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(
+          to right,
+          var(--bg-primary),
+          var(--bg-secondary)
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          rgba(138, 43, 226, 0.1) 0%,
+          rgba(138, 43, 226, 0) 70%
+        );
+        z-index: 0;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero h1 {
+        font-size: 60px;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .hero h1 span {
+        color: var(--accent-color);
+      }
+
+      .hero p {
+        font-size: 20px;
+        margin-bottom: 30px;
+        color: var(--text-secondary);
+        max-width: 600px;
+      }
+
+      .social-links {
+        display: flex;
+        margin-top: 30px;
+      }
+
+      .social-links a {
+        margin-right: 20px;
+        font-size: 24px;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        color: var(--accent-color);
+        transform: translateY(-5px);
+      }
+
+      /* About Section */
+      .about {
+        background-color: var(--bg-secondary);
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .about-image {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background-color: var(--bg-primary);
+      }
+
+      .about-image img {
+        width: 250px;
+        height: 250px;
+        display: block;
+        border-radius: 50%;
+        transition: var(--transition);
+        object-fit: cover;
+        border: 5px solid var(--accent-color);
+        box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+      }
+
+      .section-title {
+        font-size: 36px;
+        margin-bottom: 20px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--accent-color);
+      }
+
+      .about-text p {
+        margin-bottom: 20px;
+        color: var(--text-secondary);
+      }
+
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+
+      .skill {
+        background-color: rgba(138, 43, 226, 0.1);
+        color: var(--accent-color);
+        padding: 8px 15px;
+        border-radius: 30px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        transition: var(--transition);
+      }
+
+      .skill:hover {
+        background-color: var(--accent-color);
+        color: var(--text-primary);
+      }
+
+      /* Projects Section */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .project-card {
+        background-color: var(--bg-secondary);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: var(--transition);
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .project-image {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .project-card:hover .project-image img {
+        transform: scale(1.05);
+      }
+
+      .project-content {
+        padding: 20px;
+      }
+
+      .project-title {
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+
+      .project-description {
+        color: var(--text-secondary);
+        font-size: 15px;
+        margin-bottom: 20px;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .project-tag {
+        background-color: rgba(138, 43, 226, 0.1);
+        color: var(--accent-color);
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+      }
+
+      .project-links {
+        display: flex;
+      }
+
+      .project-links a {
+        margin-right: 15px;
+        color: var(--text-secondary);
+        transition: var(--transition);
+      }
+
+      .project-links a:hover {
+        color: var(--accent-color);
+      }
+
+      /* Contact Section */
+      .contact {
+        background-color: var(--bg-secondary);
+      }
+
+      .contact .section-title {
+        color: var(--text-primary);
+      }
+
+      .contact > .container > p {
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin-bottom: 30px;
+      }
+
+      .contact-flex {
+        display: flex;
+        margin-top: 50px;
+        gap: 50px;
+        background-color: var(--bg-primary);
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        padding: 40px;
+      }
+
+      .contact-info {
+        width: 40%;
+      }
+
+      .contact-form {
+        width: 60%;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        padding: 15px;
+        background-color: rgba(138, 43, 226, 0.05);
+        border-radius: 8px;
+        transition: var(--transition);
+      }
+
+      .contact-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(138, 43, 226, 0.1);
+      }
+
+      .contact-item i {
+        font-size: 24px;
+        margin-right: 20px;
+        color: var(--accent-color);
+      }
+
+      .contact-item-content h4 {
+        font-size: 18px;
+        margin-bottom: 5px;
+        color: var(--accent-color);
+      }
+
+      .contact-item-content p {
+        color: var(--text-secondary);
+      }
+
+      .contact-form form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .full-width {
+        grid-column: 1 / span 2;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        color: var(--text-primary);
+        font-size: 16px;
+        transition: var(--transition);
+      }
+
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        outline: none;
+        border-color: var(--accent-color);
+        background-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 10px rgba(138, 43, 226, 0.2);
+      }
+
+      .contact-form textarea {
+        height: 150px;
+        resize: none;
+      }
+
+      .contact-form .btn {
+        width: 100%;
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
+
+      .contact-form .btn:hover {
+        background-color: var(--accent-color);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--bg-primary);
+        padding: 30px 0;
+        text-align: center;
+      }
+
+      footer p {
+        color: var(--text-secondary);
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        animation: fadeIn 1s ease forwards;
+      }
+
+      /* Mobile Responsive Styles */
+      @media screen and (max-width: 992px) {
+        .about-content {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .contact-flex {
+          flex-direction: column;
+          padding: 30px;
+        }
+
+        .contact-info,
+        .contact-form {
+          width: 100%;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        section {
+          padding: 60px 0;
+        }
+
+        .hero h1 {
+          font-size: 40px;
+        }
+
+        .hero p {
+          font-size: 18px;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: -100%;
+          left: 0;
+          width: 100%;
+          background-color: var(--bg-secondary);
+          flex-direction: column;
+          text-align: center;
+          transition: var(--transition);
+          padding: 30px 0;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          z-index: 99;
+        }
+
+        .nav-links.active {
+          top: 80px;
+        }
+
+        .nav-links li {
+          margin: 15px 0;
+        }
+
+        .mobile-menu {
+          display: block;
+        }
+
+        .mobile-menu.active .bar:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
+
+        .mobile-menu.active .bar:nth-child(2) {
+          opacity: 0;
+        }
+
+        .mobile-menu.active .bar:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-form form {
+          grid-template-columns: 1fr;
+        }
+
+        .full-width {
+          grid-column: 1;
+        }
+        
+        .about-image {
+          padding: 10px;
+        }
+        
+        .about-image img {
+          width: 200px;
+          height: 200px;
+        }
+      }
+      .gap {
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">Portfolio</div>
+          <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <div class="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content fade-in">
+          <h1>Hi, I'm <span>Harsh Manmode</span></h1>
+          <p>
+            I'm a passionate developer specializing in creating beautiful and
+            functional websites. I love turning ideas into reality through code.
+          </p>
+          <a href="#projects" class="btn">View My Work</a>
+          <div class="social-links">
+            <a href="https://github.com/Harsh-2006-git/"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a href="https://www.linkedin.com/in/harsh-manmode-2a0b91325"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/harsh___098?igsh=dzJ0dmc2dnBmNzk="
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-image">
+            <img src="image.png" alt="Profile Image" />
+          </div>
+          <div class="about-text">
+            <h2 class="section-title">About Me</h2>
+            <p>
+              I am a passionate web developer with a strong focus on creating
+              responsive, user-friendly websites and applications. I've
+              developed a keen eye for detail and a love for clean, efficient
+              code.
+            </p>
+            <p>
+              My journey in web development began when I started my college, and
+              since then, I've continuously expanded my knowledge and skills to
+              stay current with the latest technologies and best practices.
+            </p>
+            <h3>My Skills</h3>
+            <div class="skills">
+              <span class="skill">HTML5</span>
+              <span class="skill">CSS3</span>
+              <span class="skill">JavaScript</span>
+              <span class="skill">React</span>
+              <span class="skill">Node.js</span>
+              <span class="skill">MySQL</span>
+              <span class="skill">MongoDB</span>
+              <span class="skill">Design</span>
+              <span class="skill">Version Control</span>
+            </div>
+            <a href="#contact" class="btn" style="margin-top: 30px"
+              >Contact Me</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+      <div class="container">
+        <h2 class="section-title">My Projects</h2>
+        <p>
+          Here are some of the projects I've worked on. Each project represents
+          a unique challenge and learning opportunity.
+        </p>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card">
+            <div class="project-image">
+              <img
+                src="https://shorttermrentalz.com/wp-content/uploads/2019/06/Airbnb-Luxe.jpg"
+                alt="Image"
+              />
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Travel Accommodation Website</h3>
+              <p class="project-description">
+                Wonderlust is a comprehensive accommodation booking platform
+                that connects travelers with unique places to stay around the
+                world
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">EJS</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">MongoDB</span>
+                <span class="project-tag">HTML/CSS</span>
+              </div>
+              <div class="project-links">
+                <a href="https://wonderlust-harsh-09.onrender.com/"
+                  ><i class="fas fa-external-link-alt"></i> Live</a
+                >
+                <a href="https://github.com/Harsh-2006-git/WonderLust_Harsh_09"
+                  ><i class="fab fa-github"></i> GitHub</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card">
+            <div class="project-image">
+              <img
+                src="https://www.getfoundquick.com/wp-content/uploads/2017/12/shutterstock_400002673-1.jpg"
+                alt=""
+              />
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Healthcare Application</h3>
+              <p class="project-description">
+                A web-based platform designed to streamline the management of
+                healthcare services. It allows patients to find doctors, book
+                appointments, and access medical records.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">Chatbot</span>
+                <span class="project-tag">MongoDB</span>
+                <span class="project-tag">AI</span>
+              </div>
+              <div class="project-links">
+                <a href="https://harsh-2006-git.github.io/Healthcare-HDIMS/"
+                  ><i class="fas fa-external-link-alt"></i> Live</a
+                >
+                <a href="https://github.com/Harsh-2006-git/Healthcare-HDIMS"
+                  ><i class="fab fa-github"></i> GitHub</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <p>Feel free to contact me for any work or suggestions below.</p>
+
+        <div class="contact-flex">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-envelope gap"></i>
+              <div class="contact-item-content">
+                <h4>Email</h4>
+                <p>harshmanmode79@gmail.com</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone gap"></i>
+              <div class="contact-item-content">
+                <h4>Phone</h4>
+                <p>+91 8305721431</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt gap"></i>
+              <div class="contact-item-content">
+                <h4>Location</h4>
+                <p>Gwalior, India</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <form>
+              <div class="form-group">
+                <input type="text" placeholder="Name" required />
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="Email" required />
+              </div>
+              <div class="form-group full-width">
+                <input type="text" placeholder="Subject" required />
+              </div>
+              <div class="form-group full-width">
+                <textarea placeholder="Your Message" required></textarea>
+              </div>
+              <div class="form-group full-width">
+                <button type="submit" class="btn">Send Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 Harsh. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Font Awesome for Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+    <!-- JavaScript -->
+    <script>
+      // Mobile Navigation Toggle
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const navLinks = document.querySelector(".nav-links");
+
+      mobileMenu.addEventListener("click", () => {
+        mobileMenu.classList.toggle("active");
+        navLinks.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking on a nav link
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("active");
+          navLinks.classList.remove("active");
+        });
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Add animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll("section:not(.hero)").forEach((section) => {
+        observer.observe(section);
+      });
+
+      // Form submission handling
+      const contactForm = document.querySelector(".contact-form form");
+
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // You would typically add AJAX form submission code here
+          alert("Thank you for your message! I will get back to you soon.");
+          contactForm.reset();
+        });
+      }
+    </script>
+  </body>
+</html>
